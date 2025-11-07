@@ -1,11 +1,12 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";  
 import { Textarea } from "@/components/ui/textarea";
-import { Heart, PhoneCall, Activity, Star, ChevronLeft, ChevronRight, Mail, Phone, MapPin } from "lucide-react";
+import { Heart, PhoneCall, Activity, Star, Briefcase, TrendingUp, Timer, MessagesSquare, ShieldCheck, Wallet, Mail, Phone, MapPin } from "lucide-react";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import logo from "@/assets/logo.png";
 import video from "@/assets/video2.mp4";
+import { useEffect } from "react";
 
 const Index = () => {
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
@@ -18,9 +19,9 @@ const Index = () => {
   });
 
   const testimonials = [
-    { name: "Sarah Johnson", role: "Diabetes Patient", text: "Care Connect Pro has transformed how I manage my diabetes. The monthly check-ins and medication reminders have made a real difference.", avatar: "👩‍⚕️" },
-    { name: "Michael Chen", role: "Heart Disease Patient", text: "The continuous care approach has helped me stay on top of my heart health. I feel supported every step of the way.", avatar: "👨‍💼" },
-    { name: "Emily Rodriguez", role: "COPD Patient", text: "Thanks to Care Connect Pro, I'm breathing easier and living better. The remote monitoring is excellent.", avatar: "👩‍💻" }
+    { name: "Dr. A", role: "Review #1", text: "Care Connect Pro makes patient management seamless and helps me stay connected with my patients more efficiently.", avatar: "👩‍⚕️" },
+    { name: "Dr. B", role: "Review #2", text: "It’s a reliable tool that streamlines my workflow and lets me focus more on providing quality care.", avatar: "👨‍💼" },
+    { name: "Dr. H", role: "Review #3", text: "Thanks to Care Connect Pro, they have transformed how our clinic collaborates and delivers patient-centered care.", avatar: "👩‍💻" }
   ];
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -32,6 +33,14 @@ const Index = () => {
     setFormData({ name: "", email: "", phone: "", message: "" });
   };
 
+    const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => setIsScrolled(window.scrollY > 50);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
@@ -42,12 +51,13 @@ const Index = () => {
   return (
     <div className="min-h-screen">
       {/* Navbar */}
-      <nav className="fixed top-0 left-0 right-0 z-50 
-                      bg-[rgba(255,255,255,0.12)] 
-                      backdrop-blur-md 
-                      border-b border-white/10 
-                      shadow-[0_4px_30px_rgba(0,0,0,0.1)] 
-                      transition-all duration-300">
+        <nav
+          className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300
+            ${isScrolled
+              ? "bg-[linear-gradient(180deg,#5472FF_0%,#3F55BF_63%,#324499_100%)] shadow-md border-b border-[#324499]/40"
+              : "bg-[rgba(255,255,255,0.12)] backdrop-blur-md border-b border-white/10 shadow-[0_4px_30px_rgba(0,0,0,0.1)]"
+            }`}
+        >
         <div className="container mx-auto px-8 py-1">
           <div className="flex items-center justify-between">
             <button
@@ -132,60 +142,91 @@ const Index = () => {
 </section>
 
 
-    {/* Services */}
-    <section id="services" className="relative -mt-32 pb-20 px-6 z-[20] overflow-hidden">
-      <div className="container mx-auto relative">
-        {/* 🔹 Blurred Blue Gradient Background (Right Side) */}
-        <div className="absolute top-0 right-0 w-[40%] h-full 
-                        bg-[radial-gradient(circle_at_center,#5472FF_0%,#3F55BF_40%,transparent_80%)] 
-                        blur-3xl opacity-40 z-0 pointer-events-none"></div>
+  {/* Services */}
+  <section
+    id="services"
+    className="relative -mt-32 pb-20 px-4 sm:px-6 md:px-8 z-[20] overflow-hidden"
+  >
+    <div className="container mx-auto relative">
+      {/* 🔹 Blurred Blue Gradient Background (Right Side) */}
+      <div
+        className="absolute top-0 right-0 w-[60%] sm:w-[50%] md:w-[40%] h-full 
+                    bg-[radial-gradient(circle_at_center,#5472FF_0%,#3F55BF_40%,transparent_80%)] 
+                    blur-3xl opacity-40 z-0 pointer-events-none"
+      ></div>
 
-        <div className="bg-[linear-gradient(180deg,#FFFFFF_0%,#D8DFFF_200%)] 
-                        rounded-[5rem] 
-                        shadow-[inset_0_0_15px_rgba(50,68,153,0.35),_0_15px_50px_rgba(82,113,255,0.25)] 
-                        px-8 md:px-24 py-24 relative z-10">
-        <div className="text-center mb-16">
-          <p className="text-accent font-bold text-black text-sm tracking-[0.3em] mb-4 uppercase">Our Services</p>
+      <div
+        className="bg-[linear-gradient(180deg,#FFFFFF_0%,#D8DFFF_200%)] 
+                  rounded-[3rem] sm:rounded-[4rem] md:rounded-[5rem]
+                  shadow-[inset_0_0_15px_rgba(50,68,153,0.35),_0_15px_50px_rgba(82,113,255,0.25)] 
+                  px-6 sm:px-10 md:px-24 py-16 sm:py-20 md:py-24 relative z-10"
+      >
+        <div className="text-center mb-12 sm:mb-16">
+          <p className="text-accent font-bold text-black text-xs sm:text-sm tracking-[0.25em] mb-3 sm:mb-4 uppercase">
+            Our Services
+          </p>
           <h2
-            className="text-4xl md:text-5xl font-bold mb-4 
+            className="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 sm:mb-4 
                       bg-[linear-gradient(180deg,#5472FF_0%,#3F55BF_63%,#324499_100%)] 
                       bg-clip-text text-transparent"
-        >
-          Why Consider Chronic Care Management?
-        </h2>
-        <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-          Comprehensive care coordination designed to improve your health outcomes and quality of life.
-        </p>
-      </div>
+          >
+            Why Consider Chronic Care Management?
+          </h2>
+          <p className="text-muted-foreground text-sm sm:text-base md:text-lg max-w-2xl mx-auto">
+            Comprehensive care coordination designed to improve your health outcomes and quality of life.
+          </p>
+        </div>
 
-            <div className="grid md:grid-cols-3 gap-12">
-              <div className="text-center group">
-                <div className="inline-flex items-center justify-center w-24 h-24 rounded-full bg-[linear-gradient(180deg,#5472FF_0%,#3F55BF_63%,#324499_100%)] mb-6 transition-all group-hover:scale-110 group-hover:shadow-xl group-hover:shadow-primary/20">
-                  <Heart className="w-12 h-12 text-white" strokeWidth={2.5} />
-                </div>
-                <h3 className="text-2xl font-bold text-primary mb-4">Better Health Outcomes</h3>
-                <p className="text-muted-foreground text-lg leading-relaxed">Ongoing care coordination helps reduce hospital visits and improves overall health results through personalized attention.</p>
-              </div>
-
-              <div className="text-center group">
-                <div className="inline-flex items-center justify-center w-24 h-24 rounded-full bg-[linear-gradient(180deg,#5472FF_0%,#3F55BF_63%,#324499_100%)] mb-6 transition-all group-hover:scale-110 group-hover:shadow-xl group-hover:shadow-primary/20">
-                  <PhoneCall className="w-12 h-12 text-white" strokeWidth={2.5} />
-                </div>
-                <h3 className="text-2xl font-bold text-primary mb-4">Regular Check-ins</h3>
-                <p className="text-muted-foreground text-lg leading-relaxed">Stay connected through monthly follow-ups, digital monitoring, and 24/7 access to your care team whenever you need support.</p>
-              </div>
-
-              <div className="text-center group">
-                <div className="inline-flex items-center justify-center w-24 h-24 rounded-full bg-[linear-gradient(180deg,#5472FF_0%,#3F55BF_63%,#324499_100%)] mb-6 transition-all group-hover:scale-110 group-hover:shadow-xl group-hover:shadow-primary/20">
-                  <Activity className="w-12 h-12 text-white" strokeWidth={2.5} />
-                </div>
-                <h3 className="text-2xl font-bold text-primary mb-4">Medication Management</h3>
-                <p className="text-muted-foreground text-lg leading-relaxed">Ensure proper adherence through organized medication tracking, timely reminders, and comprehensive medication reviews.</p>
-              </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 sm:gap-12">
+          <div className="text-center group">
+            <div className="inline-flex items-center justify-center w-20 sm:w-24 h-20 sm:h-24 rounded-full 
+                            bg-[linear-gradient(180deg,#5472FF_0%,#3F55BF_63%,#324499_100%)] 
+                            mb-5 sm:mb-6 transition-all 
+                            group-hover:scale-110 group-hover:shadow-xl group-hover:shadow-primary/20">
+              <Heart className="w-10 sm:w-12 h-10 sm:h-12 text-white" strokeWidth={2.5} />
             </div>
+            <h3 className="text-xl sm:text-2xl font-bold text-primary mb-3 sm:mb-4">
+              Better Health Outcomes
+            </h3>
+            <p className="text-muted-foreground text-sm sm:text-base md:text-lg leading-relaxed">
+              Ongoing care coordination helps reduce hospital visits and improves overall health results through personalized attention.
+            </p>
+          </div>
+
+          <div className="text-center group">
+            <div className="inline-flex items-center justify-center w-20 sm:w-24 h-20 sm:h-24 rounded-full 
+                            bg-[linear-gradient(180deg,#5472FF_0%,#3F55BF_63%,#324499_100%)] 
+                            mb-5 sm:mb-6 transition-all 
+                            group-hover:scale-110 group-hover:shadow-xl group-hover:shadow-primary/20">
+              <PhoneCall className="w-10 sm:w-12 h-10 sm:h-12 text-white" strokeWidth={2.5} />
+            </div>
+            <h3 className="text-xl sm:text-2xl font-bold text-primary mb-3 sm:mb-4">
+              Regular Check-ins
+            </h3>
+            <p className="text-muted-foreground text-sm sm:text-base md:text-lg leading-relaxed">
+              Stay connected through monthly follow-ups, digital monitoring, and 24/7 access to your care team whenever you need support.
+            </p>
+          </div>
+
+          <div className="text-center group">
+            <div className="inline-flex items-center justify-center w-20 sm:w-24 h-20 sm:h-24 rounded-full 
+                            bg-[linear-gradient(180deg,#5472FF_0%,#3F55BF_63%,#324499_100%)] 
+                            mb-5 sm:mb-6 transition-all 
+                            group-hover:scale-110 group-hover:shadow-xl group-hover:shadow-primary/20">
+              <Activity className="w-10 sm:w-12 h-10 sm:h-12 text-white" strokeWidth={2.5} />
+            </div>
+            <h3 className="text-xl sm:text-2xl font-bold text-primary mb-3 sm:mb-4">
+              Medication Management
+            </h3>
+            <p className="text-muted-foreground text-sm sm:text-base md:text-lg leading-relaxed">
+              Ensure proper adherence through organized medication tracking, timely reminders, and comprehensive medication reviews.
+            </p>
           </div>
         </div>
-      </section>
+      </div>
+    </div>
+  </section>
+
 
       {/* Focus Areas */}
       <section id="programs" className="py-24 px-6 bg-gradient-to-b from-white via-secondary/20 to-white">
@@ -199,7 +240,7 @@ const Index = () => {
                         bg-[linear-gradient(180deg,#5472FF_0%,#3F55BF_63%,#324499_100%)] 
                         bg-clip-text text-transparent"
             >
-              Our Care Programs
+              What Do We Offer?
             </h2>
             <p className="text-muted-foreground text-xl max-w-2xl mx-auto">
               We specialize in continuous support for a range of chronic health concerns with personalized care plans.
@@ -207,7 +248,7 @@ const Index = () => {
           </div>
 
           {/* 🔹 Focus Area Cards */}
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
+          <div className="grid sm:grid-cols-3 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {/* Card 1 */}
             <div
               className="relative p-8 rounded-[2rem] 
@@ -218,11 +259,11 @@ const Index = () => {
                         group"
             >
               <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                <Heart className="w-7 h-7 text-primary" />
+                <Briefcase className="w-7 h-7 text-primary" />
               </div>
-              <h3 className="text-xl font-bold text-primary mb-3">Diabetes Management</h3>
+              <h3 className="text-xl font-bold text-primary mb-3">Professional Presentation</h3>
               <p className="text-muted-foreground">
-                Regular glucose monitoring and dietary guidance.
+                We'll offer a professional presentation of your clinic.
               </p>
             </div>
 
@@ -236,11 +277,11 @@ const Index = () => {
                         group"
             >
               <div className="w-14 h-14 rounded-full bg-accent/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                <Activity className="w-7 h-7 text-accent" />
+                <TrendingUp className="w-7 h-7 text-accent" />
               </div>
-              <h3 className="text-xl font-bold text-primary mb-3">Hypertension Support</h3>
+              <h3 className="text-xl font-bold text-primary mb-3">Improved Patient Outcomes</h3>
               <p className="text-muted-foreground">
-                Blood pressure monitoring and lifestyle coaching.
+                Enhanced disease management and better control of chronic conditions.
               </p>
             </div>
 
@@ -254,11 +295,11 @@ const Index = () => {
                         group"
             >
               <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                <Heart className="w-7 h-7 text-primary" />
+                <Timer className="w-7 h-7 text-primary" />
               </div>
-              <h3 className="text-xl font-bold text-primary mb-3">Heart Disease Prevention</h3>
+              <h3 className="text-xl font-bold text-primary mb-3">Improve Response Time</h3>
               <p className="text-muted-foreground">
-                Comprehensive cardiovascular risk management.
+                Allows your team to identify new developments in a patient's health and pinpoint higher-risk patients.
               </p>
             </div>
 
@@ -272,11 +313,47 @@ const Index = () => {
                         group"
             >
               <div className="w-14 h-14 rounded-full bg-accent/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                <Activity className="w-7 h-7 text-accent" />
+                <MessagesSquare className="w-7 h-7 text-accent" />
               </div>
-              <h3 className="text-xl font-bold text-primary mb-3">COPD & Respiratory Care</h3>
+              <h3 className="text-xl font-bold text-primary mb-3">Connect To Your Patients</h3>
               <p className="text-muted-foreground">
-                Breathing exercises and pulmonary support.
+                Create a more trusted relationship through monthly conversations empathizing a patient's unique healthcare challenges.
+              </p>
+            </div>
+
+                        {/* Card 5 */}
+            <div
+              className="relative p-8 rounded-[2rem] 
+                        bg-[linear-gradient(180deg,#FFFFFF_0%,#D8DFFF_200%)] 
+                        shadow-[inset_0_0_5px_rgba(50,68,153,0.35),_0_15px_50px_rgba(82,113,255,0.25)] 
+                        backdrop-blur-xl transition-all 
+                        hover:scale-105 hover:shadow-[inset_0_0_10px_rgba(50,68,153,0.45),_0_20px_60px_rgba(82,113,255,0.35)] 
+                        group"
+            >
+              <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                <ShieldCheck className="w-7 h-7 text-primary" />
+              </div>
+              <h3 className="text-xl font-bold text-primary mb-3">Prevent Acute Situations</h3>
+              <p className="text-muted-foreground">
+                Gather more detailed information from your patients to discover health deficiencies by estabilishing a trusted relationship during monthly calls.
+              </p>
+            </div>
+
+                        {/* Card 6 */}
+            <div
+              className="relative p-8 rounded-[2rem] 
+                        bg-[linear-gradient(180deg,#FFFFFF_0%,#D8DFFF_200%)] 
+                        shadow-[inset_0_0_5px_rgba(50,68,153,0.35),_0_15px_50px_rgba(82,113,255,0.25)] 
+                        backdrop-blur-xl transition-all 
+                        hover:scale-105 hover:shadow-[inset_0_0_10px_rgba(50,68,153,0.45),_0_20px_60px_rgba(82,113,255,0.35)] 
+                        group"
+            >
+              <div className="w-14 h-14 rounded-full bg-accent/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                <Wallet className="w-7 h-7 text-accent" />
+              </div>
+              <h3 className="text-xl font-bold text-primary mb-3">Increase Revenue</h3>
+              <p className="text-muted-foreground">
+                Through CMS reimbursements, which leads to more budget for additional resources or staff to improve patient care.
               </p>
             </div>
           </div>
@@ -354,70 +431,85 @@ const Index = () => {
       </section>
 
       {/* Contact Form */}
-      <section id="contact" className="py-24 px-6 bg-[linear-gradient(180deg,#5472FF_0%,#3F55BF_63%,#324499_100%)] relative overflow-hidden">
+      <section id="contact" className="py-20 px-4 sm:px-6 md:px-8 bg-[linear-gradient(180deg,#5472FF_0%,#3F55BF_63%,#324499_100%)] relative overflow-hidden">
+        {/* Background Blurs */}
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute -top-40 -right-40 w-96 h-96 bg-accent/20 rounded-full blur-3xl"></div>
           <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-white/10 rounded-full blur-3xl"></div>
         </div>
-        
+
         <div className="container mx-auto max-w-6xl relative z-10">
-          <div className="text-center mb-16">
-            <p className="text-accent font-bold text-sm tracking-[0.3em] mb-4 uppercase text-white/90">Get In Touch</p>
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">Ready to Start Your Care Journey?</h2>
-            <p className="text-white/90 text-xl">Contact us today and take the first step toward better health outcomes.</p>
+          {/* Header */}
+          <div className="text-center mb-12 md:mb-16 px-2">
+            <p className="text-accent font-bold text-xs sm:text-sm tracking-[0.3em] mb-3 uppercase text-white/90">
+              Get In Touch
+            </p>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-3 sm:mb-4">
+              Ready to Start Your Care Journey?
+            </h2>
+            <p className="text-white/90 text-base sm:text-lg md:text-xl">
+              Contact us today and take the first step toward better health outcomes.
+            </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-12">
+          {/* Grid Container */}
+          <div className="grid md:grid-cols-2 gap-8 md:gap-12 justify-center items-stretch">
             {/* Contact Info */}
-            <div className="space-y-8">
-              <div className="bg-white/10 backdrop-blur-sm rounded-3xl p-8 border border-white/20">
-                <h3 className="text-2xl font-bold text-white mb-6">Contact Information</h3>
-                
+            <div className="bg-white/10 backdrop-blur-sm rounded-3xl p-6 sm:p-8 md:p-10 border border-white/20 flex flex-col justify-between">
+              <div>
+                <h3 className="text-xl sm:text-2xl font-bold text-white mb-6">Contact Information</h3>
                 <div className="space-y-6">
+                  {/* Phone */}
                   <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 rounded-full bg-accent flex items-center justify-center flex-shrink-0">
-                      <Phone className="w-6 h-6 text-white" />
+                    <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-accent flex items-center justify-center flex-shrink-0">
+                      <Phone className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
                     </div>
                     <div>
-                      <p className="text-white/70 text-sm mb-1">Call Us</p>
-                      <p className="text-white font-semibold text-lg">1-800-CARE-PRO</p>
+                      <p className="text-white/70 text-xs sm:text-sm mb-1">Call Us</p>
+                      <p className="text-white font-semibold text-base sm:text-lg">1-800-CARE-PRO</p>
                     </div>
                   </div>
 
+                  {/* Email */}
                   <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 rounded-full bg-accent flex items-center justify-center flex-shrink-0">
-                      <Mail className="w-6 h-6 text-white" />
+                    <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-accent flex items-center justify-center flex-shrink-0">
+                      <Mail className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
                     </div>
                     <div>
-                      <p className="text-white/70 text-sm mb-1">Email Us</p>
-                      <p className="text-white font-semibold text-lg">info@careconnectpro.com</p>
+                      <p className="text-white/70 text-xs sm:text-sm mb-1">Email Us</p>
+                      <p className="text-white font-semibold text-base sm:text-lg">info@careconnectpro.com</p>
                     </div>
                   </div>
 
+                  {/* Address */}
                   <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 rounded-full bg-accent flex items-center justify-center flex-shrink-0">
-                      <MapPin className="w-6 h-6 text-white" />
+                    <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-accent flex items-center justify-center flex-shrink-0">
+                      <MapPin className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
                     </div>
                     <div>
-                      <p className="text-white/70 text-sm mb-1">Visit Us</p>
-                      <p className="text-white font-semibold text-lg">123 Healthcare Blvd, Suite 100<br />Medical City, MC 12345</p>
+                      <p className="text-white/70 text-xs sm:text-sm mb-1">Visit Us</p>
+                      <p className="text-white font-semibold text-base sm:text-lg">
+                        123 Healthcare Blvd, Suite 100<br />Medical City, MC 12345
+                      </p>
                     </div>
                   </div>
                 </div>
+              </div>
 
-                <div className="mt-8 pt-8 border-t border-white/20">
-                  <p className="text-white/90 text-sm">
-                    <span className="font-semibold">Hours:</span> Monday - Friday, 8:00 AM - 6:00 PM
-                  </p>
-                  <p className="text-white/70 text-sm mt-2">24/7 Emergency Support Available</p>
-                </div>
+              <div className="mt-8 pt-6 border-t border-white/20">
+                <p className="text-white/90 text-xs sm:text-sm">
+                  <span className="font-semibold">Hours:</span> Monday - Friday, 8:00 AM - 6:00 PM
+                </p>
+                <p className="text-white/70 text-xs sm:text-sm mt-2">
+                  24/7 Emergency Support Available
+                </p>
               </div>
             </div>
 
             {/* Contact Form */}
-            <div className="bg-white rounded-3xl p-8 md:p-10 shadow-2xl">
-              <h3 className="text-2xl font-bold text-foreground mb-6">Send Us a Message</h3>
-              <form onSubmit={handleSubmit} className="space-y-6">
+            <div className="bg-white rounded-3xl p-6 sm:p-8 md:p-10 shadow-2xl">
+              <h3 className="text-xl sm:text-2xl font-bold text-foreground mb-6">Send Us a Message</h3>
+              <form onSubmit={handleSubmit} className="space-y-5 sm:space-y-6">
                 <div>
                   <label htmlFor="name" className="block text-sm font-semibold text-foreground mb-2">
                     Full Name *
@@ -429,7 +521,7 @@ const Index = () => {
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                     required
-                    className="h-12 rounded-xl border-2 focus:border-primary"
+                    className="h-10 sm:h-12 rounded-xl border-2 focus:border-primary text-sm sm:text-base"
                   />
                 </div>
 
@@ -444,7 +536,7 @@ const Index = () => {
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                     required
-                    className="h-12 rounded-xl border-2 focus:border-primary"
+                    className="h-10 sm:h-12 rounded-xl border-2 focus:border-primary text-sm sm:text-base"
                   />
                 </div>
 
@@ -458,7 +550,7 @@ const Index = () => {
                     placeholder="(555) 123-4567"
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                    className="h-12 rounded-xl border-2 focus:border-primary"
+                    className="h-10 sm:h-12 rounded-xl border-2 focus:border-primary text-sm sm:text-base"
                   />
                 </div>
 
@@ -472,16 +564,15 @@ const Index = () => {
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                     required
-                    rows={5}
-                    className="rounded-xl border-2 focus:border-primary resize-none"
+                    rows={4}
+                    className="rounded-xl border-2 focus:border-primary resize-none text-sm sm:text-base"
                   />
                 </div>
 
                 <Button
                   type="submit"
-                  className="w-full bg-primary hover:bg-primary/90 text-white font-semibold h-12 rounded-xl shadow-lg hover:shadow-xl transition-all text-white font-semibold px-8 rounded-full shadow-lg transition-all hover:scale-105 
-                        bg-[linear-gradient(180deg,#5472FF_0%,#3F55BF_63%,#324499_100%)] 
-                        hover:shadow-[#3F55BF]/20"
+                  className="w-full h-10 sm:h-12 text-sm sm:text-base font-semibold rounded-full shadow-lg transition-all hover:scale-105 
+                          bg-[linear-gradient(180deg,#5472FF_0%,#3F55BF_63%,#324499_100%)] hover:shadow-[#3F55BF]/20 text-white"
                 >
                   Send Message
                 </Button>
@@ -491,39 +582,25 @@ const Index = () => {
         </div>
       </section>
 
+
       {/* Footer */}
       <footer className="bg-foreground text-white py-12 px-6">
         <div className="container mx-auto">
-          <div className="grid md:grid-cols-4 gap-8 mb-8">
-            <div>
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
+            
+            {/* Left: Logo + About */}
+            <div className="max-w-md">
               <div className="flex items-center gap-3 mb-4">
                 <img src={logo} alt="Care Connect Pro" className="w-10 h-10 object-contain" />
                 <span className="font-bold text-lg">Care Connect Pro</span>
               </div>
-              <p className="text-white/70 text-sm">Improving healthcare outcomes through continuous care and compassionate support.</p>
+              <p className="text-white/70 text-sm leading-relaxed">
+                Improving healthcare outcomes through continuous care and compassionate support.
+              </p>
             </div>
 
-            <div>
-              <h4 className="font-bold mb-4">Quick Links</h4>
-              <ul className="space-y-2 text-sm text-white/70">
-                <li><button onClick={() => scrollToSection("home")} className="hover:text-white transition-colors">Home</button></li>
-                <li><button onClick={() => scrollToSection("services")} className="hover:text-white transition-colors">Services</button></li>
-                <li><button onClick={() => scrollToSection("programs")} className="hover:text-white transition-colors">Programs</button></li>
-                <li><button onClick={() => scrollToSection("reviews")} className="hover:text-white transition-colors">Reviews</button></li>
-              </ul>
-            </div>
-
-            <div>
-              <h4 className="font-bold mb-4">Our Programs</h4>
-              <ul className="space-y-2 text-sm text-white/70">
-                <li>Diabetes Management</li>
-                <li>Hypertension Support</li>
-                <li>Heart Disease Prevention</li>
-                <li>Respiratory Care</li>
-              </ul>
-            </div>
-
-            <div>
+            {/* Right: Contact */}
+            <div className="text-left md:text-right pb-5">
               <h4 className="font-bold mb-4">Contact</h4>
               <ul className="space-y-2 text-sm text-white/70">
                 <li>1-800-CARE-PRO</li>
@@ -532,7 +609,7 @@ const Index = () => {
                 <li>Medical City, MC 12345</li>
               </ul>
             </div>
-          </div>
+          </div>  
 
           <div className="border-t border-white/20 pt-8 text-center text-sm text-white/70">
             <p>&copy; 2025 Care Connect Pro. All rights reserved. | Privacy Policy | Terms of Service</p>
