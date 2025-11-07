@@ -4,7 +4,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Heart, PhoneCall, Activity, Star, Briefcase, TrendingUp, Timer, MessagesSquare, ShieldCheck, Wallet, Mail, Phone, MapPin } from "lucide-react";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
-import logo from "@/assets/logo.png";
+import logo from "@/assets/care logo.png";
 import video from "@/assets/video2.mp4";
 import { useEffect } from "react";
 
@@ -19,9 +19,9 @@ const Index = () => {
   });
 
   const testimonials = [
-    { name: "Dr. A", role: "Review #1", text: "Care Connect Pro makes patient management seamless and helps me stay connected with my patients more efficiently.", avatar: "👩‍⚕️" },
-    { name: "Dr. B", role: "Review #2", text: "It’s a reliable tool that streamlines my workflow and lets me focus more on providing quality care.", avatar: "👨‍💼" },
-    { name: "Dr. H", role: "Review #3", text: "Thanks to Care Connect Pro, they have transformed how our clinic collaborates and delivers patient-centered care.", avatar: "👩‍💻" }
+    { name: "Dr. A", role: "", text: "Care Connect Pro makes patient management seamless and helps me stay connected with my patients more efficiently.", avatar: "👩‍⚕️" },
+    { name: "Dr. B", role: "", text: "It’s a reliable tool that streamlines my workflow and lets me focus more on providing quality care.", avatar: "👨‍💼" },
+    { name: "Dr. H", role: "", text: "Thanks to Care Connect Pro, they have transformed how our clinic collaborates and delivers patient-centered care.", avatar: "👩‍💻" }
   ];
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -378,7 +378,7 @@ const Index = () => {
               Testimonials
             </p>
             <h2 className="text-4xl md:text-5xl font-bold mb-4">
-              Read the Reviews from our Patients
+              Read the Reviews from our Doctors
             </h2>
             <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
               Real stories from people who've experienced better health with Care Connect.
@@ -430,7 +430,7 @@ const Index = () => {
         `}</style>
       </section>
 
-      {/* Contact Form */}
+      {/* Contact Form */}        
       <section id="contact" className="py-20 px-4 sm:px-6 md:px-8 bg-[linear-gradient(180deg,#5472FF_0%,#3F55BF_63%,#324499_100%)] relative overflow-hidden">
         {/* Background Blurs */}
         <div className="absolute inset-0 overflow-hidden">
