@@ -412,22 +412,6 @@ const Index = () => {
             </div>
           </div>
         </div>
-
-        {/* Animation Styles */}
-        <style jsx>{`
-          @keyframes scroll-slow {
-            0% {
-              transform: translateX(0);
-            }
-            100% {
-              transform: translateX(-50%);
-            }
-          }
-          .animate-scroll-slow {
-            width: calc(300px * ${testimonials.length * 2} + 2rem * ${testimonials.length * 2});
-            animation: scroll-slow 20s linear infinite;
-          }
-        `}</style>
       </section>
 
       {/* Contact Form */}        
@@ -466,7 +450,7 @@ const Index = () => {
                     </div>
                     <div>
                       <p className="text-white/70 text-xs sm:text-sm mb-1">Call Us</p>
-                      <p className="text-white font-semibold text-base sm:text-lg">1-800-CARE-PRO</p>
+                      <p className="text-white font-semibold text-base sm:text-lg">718-719-8604</p>
                     </div>
                   </div>
 
@@ -477,7 +461,7 @@ const Index = () => {
                     </div>
                     <div>
                       <p className="text-white/70 text-xs sm:text-sm mb-1">Email Us</p>
-                      <p className="text-white font-semibold text-base sm:text-lg">info@careconnectpro.com</p>
+                      <p className="text-white font-semibold text-base sm:text-lg">support@careconnectpro.info</p>
                     </div>
                   </div>
 
@@ -489,7 +473,7 @@ const Index = () => {
                     <div>
                       <p className="text-white/70 text-xs sm:text-sm mb-1">Visit Us</p>
                       <p className="text-white font-semibold text-base sm:text-lg">
-                        123 Healthcare Blvd, Suite 100<br />Medical City, MC 12345
+                        71-04 Juniper Valley Rd, <br /> Middle Village 11379
                       </p>
                     </div>
                   </div>
@@ -603,9 +587,9 @@ const Index = () => {
             <div className="text-left md:text-right pb-5">
               <h4 className="font-bold mb-4">Contact</h4>
               <ul className="space-y-2 text-sm text-white/70">
-                <li>1-800-CARE-PRO</li>
-                <li>info@careconnectpro.com</li>
-                <li>123 Healthcare Blvd</li>
+                <li>718-719-8604</li>
+                <li>support@careconnectpro.info</li>
+                <li>71-04 Juniper Valley Rd, Middle Village 11379</li>
                 <li>Medical City, MC 12345</li>
               </ul>
             </div>
